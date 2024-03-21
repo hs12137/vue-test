@@ -34,6 +34,7 @@
   <div v-for="p in products" :key="p">
     <h4>{{p}}</h4>
     <p>50 만원</p>
+    <p>asasasadasdsaad</p>
   </div>
 </template>
 
