@@ -28,6 +28,7 @@
   <div>
     <h4>{{products[2]}}</h4>
     <p>{{ price3 }} 만원</p>
+    <p>asdas</p>
   </div>
 
   <div v-for="p in products" :key="p">
