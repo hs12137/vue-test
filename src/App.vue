@@ -1,4 +1,5 @@
 <template>
+  <HelloWorldVue :msg="products[2]"/>
 
   <!-- 동적인 UI를 만드는 법 -->
   <!-- UI의 현재 상태를 데이터로 저장해둠 -->
@@ -8,6 +9,7 @@
     <div class="white-bg">
       <h4>{{원룸들[clicked].title}}</h4>
       <p>{{원룸들[clicked].content}}</p>
+      <p>{{원룸들[clicked].price}}</p>
       <button @click="모달창열렸니 = false">닫기</button>
     </div>
   </div>
@@ -43,7 +45,7 @@
     <!-- <태그 v-for="(작명1, 작명2) in 리스트이름" :key="작명2"> -->
     <!-- 아래 방법에서 (작명1, 작명2) 중에서 첫번째 작명은 -->
     <!-- 리스트가 담고있는 데이터를 나타내고 두번째 작명은 index값을 나타냄 -->
-    <a v-for="a in 메뉴들" :key="a">{{ a }}</a>
+    <a v-for="item in 메뉴들" :key="item">{{ item }}</a>
   </div>
 
     <!-- 데이터 바인딩 -->
@@ -64,6 +66,7 @@
     <img :src="data.image" class="room-img">
     <h4 @click="모달창열렸니 = true; clicked = i">{{data.title}}</h4>
     <p>{{data.price}}</p>
+    <button @click="increase(i)">허위매물신고</button><span>신고 수 : {{신고수[i]}}</span>
   </div>
 </template>
 
@@ -73,6 +76,7 @@
 //iomport {변수명} or {변수1, 변수2} from 경로
 //3. 변수명 설정 안해주고 import 했으면 변수명 아무거나
 import data from "./assets/data.js"
+import HelloWorldVue from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
@@ -84,7 +88,7 @@ export default {
       price1 : 80,
       price2 : 70,
       price3 : 90,
-      신고수 : [0, 0, 0],
+      신고수 : [0, 0, 0, 0, 0, 0],
       스타일 : 'color : blue',
       products : ['역삼동원룸', '천호동원룸', '마포구원룸'],
       메뉴들 : ['Home', 'Shop', 'About'],
@@ -98,14 +102,15 @@ export default {
   },
   methods: {
     //함수명은 한글로 작성하면 안먹을때가 있어서 영어로 작성
-    increase(){
-      this.신고수++;
+    increase(index){
+      this.신고수[index]++;
     },
     btnClicked(){
       this.isVal = !this.isVal
     },
   },
   components: {
+    HelloWorldVue,
   }
 }
 </script>
